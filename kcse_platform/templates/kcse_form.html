@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KCSE Cluster Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h2>Enter Your KCSE Grades</h2>
+  <form method="POST" action="/calculate">
+    <input type="text" name="math" placeholder="Math Grade" required>
+    <input type="text" name="chem" placeholder="Chemistry Grade" required>
+    <input type="text" name="bio" placeholder="Biology Grade" required>
+    <button type="submit">Calculate</button>
+  </form>
+</body>
+</html>

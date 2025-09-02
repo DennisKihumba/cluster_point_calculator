@@ -1,0 +1,16 @@
+<!-- templates/results.html -->
+<h2>Your Cluster Points: {{ points }}</h2>
+
+{% if matches %}
+  <h3>Matched Courses:</h3>
+  <ul>
+    {% for course in matches %}
+      <li>{{ course.name }} at {{ course.university }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No matching courses found. Try improving your grades or explore alternative paths.</p>
+{% endif %}
+
+<br>
+<a href="/">Go Back</a>
