@@ -1,41 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>KCSE Career Guidance Platform</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f0f4f8;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-        a {
-            text-decoration: none;
-            color: #2980b9;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>KCSE Career Guidance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to the KCSE Career Guidance Platform</h1>
-    <p>This tool helps you:</p>
-    <ul>
-        <li><a href="/calculate">📊 Calculate Cluster Points</a></li>
-        <li><a href="/career">🧠 Get AI-Powered Career Advice</a></li>
-        <li><a href="/dashboard">📋 View Your Dashboard</a></li>
-    </ul>
-    <p>Empowering students to make informed decisions about their future.</p>
+    <div class="container">
+        <h1>🎓 KCSE Career Guidance Platform</h1>
+        <p>Empowering Kenyan youth to make informed career choices through technology and mentorship.</p>
+
+        <div class="actions">
+            <a href="{{ url_for('signup') }}">📝 Sign Up</a>
+            <a href="{{ url_for('login') }}">🔐 Log In</a>
+            <a href="{{ url_for('calculate') }}">📊 Calculate Cluster Points</a>
+            <a href="{{ url_for('career') }}">💡 Get Career Advice</a>
+        </div>
+
+        {% if session.get("user") %}
+            <p>Welcome back, {{ session["user"] }}! <a href="{{ url_for('dashboard') }}">Go to Dashboard</a> | <a href="{{ url_for('logout') }}">Log Out</a></p>
+        {% endif %}
+    </div>
 </body>
 </html>

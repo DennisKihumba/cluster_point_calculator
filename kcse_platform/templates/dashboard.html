@@ -1,69 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Career Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-        section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        }
-        ul {
-            list-style-type: square;
-        }
-        a {
-            text-decoration: none;
-            color: #2980b9;
-            font-weight: bold;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Dashboard | KCSE Career Guide</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to Your Career Dashboard</h1>
+    <div class="container">
+        <h2>🎓 Welcome, {{ user }}</h2>
 
-    <section>
-        <h2>Your Cluster Points</h2>
-        <p>{{ cluster_points if cluster_points else "Not calculated yet." }}</p>
-    </section>
+        <h3>📊 Your Cluster Score:</h3>
+        <p><strong>{{ cluster_points }}</strong></p>
 
-    <section>
-        <h2>Matched Courses</h2>
-        {% if matched_courses %}
-            <ul>
-                {% for course in matched_courses %}
-                    <li>{{ course }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No matched courses available.</p>
-        {% endif %}
-    </section>
+        <h3>🎯 Matched Courses:</h3>
+        <ul>
+            {% for course in matched_courses %}
+                <li>{{ course }}</li>
+            {% endfor %}
+        </ul>
 
-    <section>
-        <h2>Career Suggestions</h2>
+        <h3>💡 Career Suggestions:</h3>
         {% if career_suggestions %}
             <ul>
-                {% for suggestion in career_suggestions %}
-                    <li>{{ suggestion }}</li>
+                {% for career in career_suggestions %}
+                    <li>{{ career }}</li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No career suggestions available.</p>
+            <p>No suggestions yet. <a href="{{ url_for('career') }}">Get Career Advice</a></p>
         {% endif %}
-    </section>
 
-    <br>
-    <a href="/calculate">Recalculate</a> |
-    <a href="/career">Try New Interests</a>
+        <div class="actions">
+            <a href="{{ url_for('calculate') }}">📊 Recalculate Cluster</a>
+            <form action="{{ url_for('pay') }}" method="get">
+  <button type="submit">💳 Make Payment</button>
+            <a href="{{ url_for('career') }}">💡 Update Interests</a>
+            <a href="{{ url_for('reset') }}">🔄 Reset Session</a>
+            <a href="{{ url_for('logout') }}">🚪 Log Out</a>
+        </div>
+    </div>
 </body>
 </html>
